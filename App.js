@@ -115,11 +115,48 @@ const styles = StyleSheet.create({
 //export default App;
 
 class MyImage extends Component{
+
+  componentDidMount(){
+    setInterval(() => (this.setState(previousState => (
+      {isActive: !previousState.isActive}
+    ))
+    ),1000);
+  }
+
+  state = {isActive:true};
+
   render(){
+    let pic = {
+      uri: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Namibian_Bushmen_Girls.JPG"
+    };
+    if (!this.state.isActive)
+      return (<Image source={pic} style={{width:300, height:225}}/>);
     return (
       <Image source={{uri: this.props.src}} style={{width: 283, height: 216}}/>
      // <Text>{this.props.src}</Text>
     );
+  }
+}
+
+class SpecialText extends Component
+{
+
+  componentDidMount(){
+    setInterval(() => (
+      this.setState(previousState => (
+        {isActive: !previousState.isActive}
+      ))
+    ),5000);
+  }
+  
+  state = {isActive: true};
+
+  render()
+  {
+    if (!this.state.isActive)   
+      return null;
+
+    return (<Text>{this.props.text}</Text>);
   }
 }
 
@@ -131,7 +168,7 @@ export default class HelloWorldApp extends Component
       <View style={{flex:1, justifyContent: "center", alignItems: "center" }}>
         <Text>Olá</Text>
         <MyImage src="https://ic.c4assets.com/brands/how-the-other-kids-live/75edcafe-1de0-422e-aea0-04039fee84bc.jpg?interpolation=progressive-bicubic&output-quality=90"/>
-        <Text>Bem-vindo ao aplicativo</Text>
+        <SpecialText text="Bem-vindo ao aplicativo"/>
       </View>
     );
   }
