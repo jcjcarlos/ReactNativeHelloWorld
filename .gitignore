@@ -85,7 +85,8 @@ RNTester/build
 # Ignore RNTester specific Pods, but keep the __offline_mirrors__ here.
 RNTester/Pods/*
 !RNTester/Pods/__offline_mirrors
-
+#ios
+/ios/
 # react-native-codegen
 /ReactCommon/fabric/components/rncore/
 /schema-rncore.json
